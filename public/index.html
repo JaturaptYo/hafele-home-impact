@@ -5,6 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Häfele HOME IMPACT CHALLENGE 2026 | บ้านเดียวเปลี่ยนโลกได้</title>
+    <!-- ตั้งค่าสำหรับการแชร์ Facebook / LINE -->
+    <meta property="og:title" content="Häfele HOME IMPACT CHALLENGE 2026">
+    <meta property="og:description" content="ร่วมโหวตแบบบ้าน 3D รักษ์โลกที่คุณชื่นชอบ พร้อมรับ Promo Code แลก 2,500 แต้มใน LINE!">
+    <!-- ถ้ามีรูปแบนเนอร์จริง ให้เปลี่ยนลิงก์ด้านล่างนี้ -->
+    <meta property="og:image" content="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1200&q=80">
+    <!-- ใส่ลิงก์เว็บจริงของคุณหลังจาก Deploy บน Render -->
+    <meta property="og:url" content="https://hafele-home-impact.onrender.com">
+    <meta property="og:type" content="website">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700;900&family=Noto+Sans+Thai:wght@300;400;600;700&family=Roboto+Mono:wght@400;600&display=swap" rel="stylesheet">
 
@@ -1647,6 +1655,12 @@
                         </select>
                     </div>
                     <div class="form-group"><label>วันที่ซื้อสินค้า</label><input type="date" id="w-date"></div>
+                    <div class="form-group" style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 24px;">
+                        <input type="checkbox" id="w-pdpa" style="width: 16px; height: 16px; margin-top: 4px; cursor: pointer;">
+                        <label for="w-pdpa" style="font-size: 0.75rem; color: rgba(255,255,255,0.6); line-height: 1.5; margin-bottom: 0;">
+            ข้าพเจ้ายินยอมให้ Häfele Thailand เก็บรวบรวมและใช้ข้อมูลส่วนบุคคล เพื่อสิทธิประโยชน์ในการรับประกันสินค้าและสะสมแต้ม ตาม <a href="#" style="color: var(--em); text-decoration: underline;">นโยบายความเป็นส่วนตัว (PDPA)</a>
+        </label>
+                    </div>
                     <button class="btn-register" onclick="registerWarranty()">✅ ลงทะเบียนรับสิทธิ์ E-Warranty</button>
                 </div>
             </div>
@@ -2162,9 +2176,15 @@
             const email = document.getElementById('w-email').value.trim();
             const productType = document.getElementById('w-product').value;
             const purchaseDate = document.getElementById('w-date').value;
+            const isPdpaChecked = document.getElementById('w-pdpa').checked; // เช็คว่าติ๊ก PDPA หรือยัง
 
             if (!name || !phone || !productType) {
                 showToast('กรุณากรอกข้อมูลที่จำเป็น');
+                return;
+            }
+            
+            if (!isPdpaChecked) {
+                showToast('⚠️ กรุณากดยอมรับนโยบาย PDPA ก่อนลงทะเบียน');
                 return;
             }
 
